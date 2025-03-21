@@ -23,8 +23,7 @@ impl Mdf3Block for Txblock {
         let block_size = utils::read(stream, little_endian, &mut pos);
 
         let mut text: Vec<u8> = stream[pos..pos + block_size as usize - 5]
-            .try_into()
-            .expect("msg");
+            .into();
 
         // make sure that the text is utf8
         for c in &mut text {

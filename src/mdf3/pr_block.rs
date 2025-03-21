@@ -21,8 +21,7 @@ impl Mdf3Block for Prblock {
 
         //let mut program_data = vec![0; block_size as usize];
         let mut program_data: Vec<u8> = stream[pos..block_size as usize - pos]
-            .try_into()
-            .expect("msg");
+            .into();
 
         pos += program_data.len();
 

@@ -34,7 +34,7 @@ impl MDFType {
         let _id_ver: u16 = utils::read(&id_stream, little_endian, &mut pos);
         let _id_reserved2: [u8; 34] = utils::read(&id_stream, little_endian, &mut pos);
 
-        if !utils::eq(&id_file, &[b'M', b'D', b'F', b' ', b' ', b' ', b' ', b' ']) {
+        if !utils::eq(&id_file, b"MDF     ") {
             panic!("Error: Unknown file type");
         }
 
@@ -192,9 +192,9 @@ impl MDF {
 
     pub fn read_channel(&self, channel: &MdfChannel) -> Signal {
         self.file.read(
-            channel.data_group as usize,
-            channel.channel_group as usize,
-            channel.channel as usize,
+            channel.data_group,
+            channel.channel_group,
+            channel.channel,
         )
     }
 }
@@ -347,7 +347,7 @@ impl TimeChannel {
     }
 
     pub fn max_time(&self) -> f64 {
-        return *self.time.last().expect("Error reading time");
+        *self.time.last().expect("Error reading time")
     }
 }
 

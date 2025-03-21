@@ -148,7 +148,6 @@ pub fn _print_record(value: Record) {
     };
 }
 
-
 #[derive(Debug, PartialEq, Clone)]
 pub enum Record {
     Uint(u8),
@@ -175,7 +174,7 @@ impl Record {
             Record::Uint(number) => *number as f64,
             Record::Int(number) => *number as f64,
             Record::Float32(number) => *number as f64,
-            Record::Float64(number) => *number as f64,
+            Record::Float64(number) => { *number },
             Record::StringNullTerm(string) => string.parse::<f64>().unwrap(),
         }
     }

@@ -76,7 +76,7 @@ impl Signal {
             (start_index, end_index)
         };
 
-        if start_index == end_index {}
+        start_index == end_index;
 
         adjusted.timestamps = adjusted.timestamps[start_index..end_index].to_vec();
         adjusted.samples = adjusted.samples[start_index..end_index].to_vec();
